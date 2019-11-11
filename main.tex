@@ -1,0 +1,328 @@
+\documentclass{article}
+
+%-------------------------------------------------------------------------------
+%                Packages
+%-------------------------------------------------------------------------------
+
+% Needed to make fixed length table
+\usepackage{array}
+% Needed to configure page layout
+\usepackage{geometry}
+% Needed to make header & footer
+\usepackage{fancyhdr}
+% Needed to manage colors
+\usepackage{xcolor}
+% Needed to make the header
+\usepackage{tikz}
+\usepackage[absolute, overlay]{textpos} % The most useful latex package
+% Needed to make hyperlinks
+\usepackage[hidelinks]{hyperref}
+% Needed to use icons from font-awesome
+\usepackage{fontawesome}
+
+
+%-------------------------------------------------------------------------------
+%                Parameters
+%-------------------------------------------------------------------------------
+
+% Page Margins
+\geometry {
+	left = 0.5cm,
+	top = 1cm,
+	right = 1.2cm,
+	bottom = 2cm
+}
+
+% Colors
+\definecolor{main_color}    {RGB} { 0,  0,  130}
+\definecolor{line_color}    {RGB} {160, 160, 255}
+\definecolor{dash_color}    {RGB} {100, 100, 255}
+
+% Makes the footer
+\pagestyle{fancyplain}
+\fancyhf{}
+% Removes the header line
+\renewcommand{\headrulewidth}{0pt}
+\lfoot{ \hskip 10pt  \bf \today}
+\rfoot{ \bf \thepage}
+
+%-------------------------------------------------------------------------------
+%                New commands
+%-------------------------------------------------------------------------------
+
+% Defining special columns used in the table
+\newcolumntype{L}{>{\color{black}\raggedleft}p{0.14\textwidth}}
+\newcolumntype{D}{>{\color{black}}p{0.83\textwidth}}
+
+% Makes a single entry in a section
+\newcommand{\mainitem}[3] {
+    \textbf{#1}  \newline #2 \vskip5pt  \textit{#3} 
+    \vspace{6pt}    % Space between each entry
+}
+
+% Makes the tables after each section
+\newenvironment{cvtable} {
+	\hspace{-20pt} \begin{tabular}{L!{\color{line_color}\vrule width 1pt}D} % Removes the unexplained large gap to the left
+} 
+{\end{tabular}}
+
+% Used when making a list
+\newenvironment{cvitemize} {
+    \textit
+	\normalfont
+	\begin{itemize}
+} 
+{\end{itemize} \vspace{-15pt}} % Removes the unexplained large gap after each list
+
+%-------------------------------------------------------------------------------
+%                Renew commands
+%-------------------------------------------------------------------------------
+
+% Changing the default font to Gyre Adventor
+\renewcommand{\familydefault}{qag}
+
+% Changing the default section command
+\renewcommand{\section}[1] {
+    \vspace{15pt}   % Size of the gap between each section
+	{\color{main_color} \Large \textbf {#1}}
+	{\color{line_color} \vskip-5pt \rule{\linewidth}{0.5mm}\hfill\vskip-11pt\rule{\linewidth}{0.2pt}}
+	\vskip10pt  % Size of the gap after each section title
+}
+
+% Changes the default list item from a dot to a dash
+\renewcommand{\labelitemi}{\color{dash_color}\raisebox{1.2pt}{$-$}}
+
+%-------------------------------------------------------------------------------
+%                The Document
+%-------------------------------------------------------------------------------
+
+
+\begin{document}
+	\begin{tikzpicture}[absolute, remember picture, overlay]
+		\node[rectangle, fill = main_color, anchor = north west, minimum width = \paperwidth+1cm, minimum height = 3.3cm] at (current page.north west) {};
+	\end{tikzpicture}
+	
+	\begin{textblock}{16.1}(0, 0.2)
+		\color{white}
+		\begin{center}
+			\textbf{{\Huge Mihailo Grbi\' c}} 
+			\\[6pt]
+			{\Large  Electrical and Computer Engineering Student} 
+			\\[13pt]
+			\begin{tabular}{c | c | c | c}
+				{\faEnvelope} 
+				\href{mailto:mihailogrbic99@gmail.com}{mihailogrbic99@gmail.com} 
+				    \hspace{5.5pt}
+				    & 
+				    \hspace{5.5pt}
+				\raisebox{-1.2pt}{\Large\faMobilePhone}
+				+381 62 795895 
+					\hspace{5.5pt}
+				    & 
+				    \hspace{5.5pt}
+				\raisebox{0.7pt}{\large\faLinkedin}\hspace{2pt}
+				\href{https://rs.linkedin.com/in/mihailo-grbić-891953152}{Mihailo Grbi\' c}
+				    \hspace{5.5pt}
+					&
+                    \hspace{5.5pt}
+                {\large\faGithub}
+				\href{https://github.com/MihailoGrbic}{MihailoGrbic}
+			\end{tabular}
+		\end{center}
+	\end{textblock}
+    
+    
+    % Move the first section down so it doesn't overlap with the title
+    \vspace{60pt}
+    
+    
+    \section{Education}
+    	\begin{cvtable}
+    		2018 - \textit{present} & 
+    			\mainitem
+    				{Belgrade University, Faculty of Electrical Engineering}
+    				{Belgrade, Serbia} 
+    				{
+    				Second year student at the Electrical and Computer Engineering program (module Signals and Systems). Expected graduation date July 2022. GPA 9.79/10
+    				} 
+    		\\
+    		2014 - 2018 & 
+    			\mainitem
+    				{Mathematical Grammar School}
+    				{Belgrade, Serbia} 
+    				{
+    					 Honors class of top twenty students based on their entrance exam score and their accomplishments on competitions. GPA 4.85/5
+    				} 
+    	\end{cvtable}
+    
+    
+    \section{Work Experience}
+    	\begin{cvtable}
+    	    \hspace{5pt} July 2019 - Oct. 2019  & 
+    			\mainitem
+    			    {Microsoft Development Center Serbia, Cognition Serbia}
+    				{Software Engineer Intern} {
+    				    Was tasked with analyzing the viability of a new, confidential feature.
+    					Read around 20 science papers, filtered out 3 methods which were the most promising, implemented them and performed extensive analysis of their performance and viability for commercial use. The methods were implemented using \textbf{Python} and \textbf{Pytorch}, and cover the topics of \textbf{geometric computer vision}, \textbf{automatic differentiation}, and \textbf{machine learning}.
+    				}
+    	\end{cvtable}
+    
+    \section{Projects}
+    	\begin{cvtable}
+    	    \hspace{5pt} July 2018 - Dec. 2018 & 
+    			\mainitem
+    			    {Pipelined FPGA architecture for filtering images with linear and adaptive median filter}
+    			    {Petnica Science Center} 
+    			    {
+    			        Designed and implemented a pipelined \textbf{FPGA} architecture which applies linear and adaptive median filter on images, with focus on fast execution and minimal load on system memory bandwidth. The implemented architecture requires at least 9 times less system memory readings compared to a traditional, general-purpose processor implementation of these algorithms. Wrote a research paper which was featured at 2018. Annual Petnica Conference and was published in the 2018. edition of Petnica Science Journal.
+                    } 
+    	    \\
+    		\hspace{5pt} July 2017 - Dec. 2017 & 
+    			\mainitem
+    			    {Training database enlargement using Generative Adversarial Networks}
+    			    {Petnica Science Center} 
+    			    {
+    			        Tested the viability of using \textbf{Generative Adversarial Networks (GAN)} to enlarge training databases for classification machine learning problems. Implemented a \textbf{CNN} classifier for the Street View House Numbers problem, and a \textbf{Deep Convolutional Generative Adversarial Network (DCGAN)}, using \textbf{Python} and \textbf{Tensorflow}. Wrote a research paper which was featured at 2017. Annual Petnica Conference and was published in the 2017. edition of Petnica Science Journal.
+                    }
+    	\end{cvtable}
+    	
+    \newpage
+
+    \section{Projects}
+    	\begin{cvtable}
+    		\hspace{5pt} May 2017 - June 2017 & 
+    			\mainitem
+    			    {Digital Circuit Simulation}
+    			    {Mathematical Grammar School} 
+    			    {
+                        The goal of the project was to make a digital circuit simulator (inspired by Logisim), to implement it using \textbf{Object Oriented Programming} and to document the code fully. All basic logic gates were implemented, as well as wires, transistors, logical pins, clocks, and displays. Was done in a team of 3 people.
+                    }
+    	\end{cvtable}
+
+    \section{Extracurricular Activities}
+        \begin{cvtable}
+    	    Sept. 2016 - Sept. 2018 & 
+    		    \mainitem
+    				{Sekcija Primenjene Fizike i Elektronike Matemati\v cke gimnazije (PFEMG)}
+    				{Founder and Head} 
+    				{   
+    				    \vspace{-16pt}
+    				    \begin{cvitemize} \itemsep0em
+    				        \item Founded and lead a student club of Applied Physics and Electronics at Mathematical Grammar School. 
+    				        \item Treated it as a small startup, building it up from an empty, unused classroom to a well respected club with over 30 members.
+    					    \item Mentored student projects.
+                            \item Held lectures and workshops on a wide range of subjects.
+                            \item Managed the club's equipment and finances.
+                            \item Organized the club's participation and it's displays at multiple science festivals, including Belgrade Science Festival and MakerFaire Vienna.
+                            \item Contacted potential sponsors and raised over \$5k worth of funds and equipment for the club.
+    				    \end{cvitemize}
+                    }   
+            \\
+    		\hspace{5pt} Dec. 2015 - Nov. 2018 &
+    			\mainitem
+    				{Petnica Science Center, Department of Applied Physics and Electronics}
+    				{Attendee} 
+    				{
+    				    Attended 15 weeks (in total) worth of seminars which consist of lectures and workshops on the subjects of electronics, robotics, control systems, computer vision and machine learning. Worked on 3 summer research projects and wrote 2 research papers.
+    				}
+            \\
+    		\vspace{-3pt}May 2018 - \textit{present} & 
+    			\mainitem
+    			    {\vspace{-15pt}}
+    				{Junior Assistant} {
+    					Hold lectures and workshops on the subjects of programming, computer vision, and machine learning. Mentor student projects. (4 weeks per year) 
+    				}
+            \\
+            Aug. 2019 & 
+    		    \mainitem
+    				{Petnica Summer Institute of Machine Learning (PSIML)}
+    				{Attendee} 
+    				{   
+    				    Attended a 10 day machine learning course organized by Microsoft Development Center Serbia. Implemented a neural network for \textbf{semantic segmentation} of a hand from depth images, as part of a small team project.
+                    }   
+            \\
+            Dec. 2015 - Dec. 2018 & 
+                \mainitem
+    				{Computer Science Week at Mathematical Grammar School (CSNedelja)}
+    				{Attendee}
+    				{
+    				    Attended the annual, week-long seminar consisting of lectures and workshops which cover a wide range of areas in computer science, held to a select group of students.
+    				}
+            \\
+            \vspace{-3pt}Dec. 2018 - \textit{present} & 
+                \mainitem
+    				{\vspace{-15pt}}
+    				{Lecturer}
+    				{
+    					Hold lectures and workshops on the subjects of computer vision and machine learning at the annual seminar.
+    				}
+    	\end{cvtable}
+    
+
+            
+    \newpage
+    
+    \section{\textbf{Honours \& Awards}}
+    	\begin{cvtable}
+    	    2016 - \textit{present} &
+     	        \mainitem
+     	            {Scholarship for exceptionally talented students}
+     	            {Government of Serbia, Ministry of Education}
+     	            {
+                        Awarded by the Serbian Ministry of Education, Sciences, and Technological Development for maintained academic success and exceptional achievements at national competitions and extracurricular activities.
+    				}
+    		\\
+            2015 - 2017 &
+    			\mainitem
+    			    {Serbian High School Competition Awards}
+    			    {Government of Serbia, Ministry of education} 
+    			    {
+    				    One 2\textsuperscript{nd} and two 3\textsuperscript{rd} awards at national physics competitions. One 3\textsuperscript{rd} award and two honorable mentions at national programming competitions.
+    			    } 
+    		\\
+     		July 2018 &
+     	        \mainitem
+     	            {RetailTech Hackathon 3rd place}
+     	            {ICT Hub, Delhaize Serbia}
+     	            {
+    					A 48-hour hackathon with the challange of improving the in-store digital experience of Delhaize markets.  Was part of a 4 member team. We made an Android app MaxiGO which won 3rd place in a competition of 11 teams.
+    				}
+    		\\
+     		April 2017 &
+     	        \mainitem
+     	            {CoderDojo Pan\v cevo Robotics Hackathon 1st place}
+     	            {Coder Dojo Pan\v cevo} 
+     	            {
+     	                A 48-hour hackathon aimed at high school students with the challange of making a creative and useful robot.
+    				    Was part of a 3 member team. We made a robot SoilBuggy which won 1st place in a competition of 7 teams.
+    				} 
+    		\\
+            December 2016 &
+     	        \mainitem
+     	            {Decembarac Debate Competiton, Best Individual Speaker}
+     	            {Open Communication, Faculty of Law} 
+     	            {
+    					An annual, team, debate competition played by British parliament rules. 
+    					Awarded the Best individual speaker award out of 122 participants.
+    				}
+    	\end{cvtable}
+    	
+    \section{\textbf{Courses \& Certifications}}
+        \begin{cvtable}
+     		May 2019 &
+     	        \mainitem
+     	            {Stanford Machine Learning Course}
+     	            {Coursera} 
+     	            {
+     	            \vspace{-20pt}
+    				} 
+    		\\
+     		Oct. 2018 &
+     	        \mainitem
+     	            {VHDL and FPGA Development Online Course}
+     	            {Udemy}
+     	            {
+     	            \vspace{-20pt}
+    				}
+    	\end{cvtable}
+\end{document}

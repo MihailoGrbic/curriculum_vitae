@@ -1,0 +1,168 @@
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\usepackage{fontawesome}
+\usepackage{geometry}
+\usepackage[absolute, overlay]{textpos}
+\usepackage{array}
+\geometry {
+	left = 1cm,
+	top = 3.7cm,
+	right = 2cm,
+	bottom = 0.2cm,
+	nohead,
+	nofoot
+}
+
+\pagestyle{empty}
+\newcolumntype{L}{>{\raggedleft}p{0.14\textwidth}}
+\newcolumntype{D}{p{0.82\textwidth}}
+
+\newcommand{\CSharp} {
+  {\settoheight{\dimen0}{C}C\kern-.05em \resizebox{!}{\dimen0}{\raisebox{\depth}{\#}}}
+}
+
+\newcount\starid
+\newcommand{\starts}[3]{
+	{\starid=0
+		\loop
+			\advance\starid by 1
+			\ifnum\starid>#1 \textcolor{seccol}{\!\textbullet}
+			\else \textcolor{primcol}{\!\textbullet}
+			\fi
+			\ifnum\starid<#2
+		\repeat
+	} \\
+	#3
+}
+
+
+% Colours
+\definecolor{primcol}    {RGB} { 31,  48,  94}
+\definecolor{seccol}     {RGB} {204, 204, 255}
+\definecolor{tabcol}     {RGB} {204, 204, 255}
+\definecolor{tildecol}   {RGB} {100, 100, 250}
+
+\renewcommand{\section}[1] {
+	\vspace*{10pt}
+	{\color{primcol} \Large #1}
+	{\color{tabcol} \vskip-7pt \rule{\linewidth}{0.5mm}\hfill\vskip-1.1em\rule{\linewidth}{0.2pt}}
+}
+\renewcommand{\labelitemi}{\color{tildecol}\raisebox{1.2pt}{$\sim$}}
+
+
+\newcommand{\mainitem}[3] {
+	\textbf{#1} \hfill #2 \newline \emph{#3}
+}
+
+\newenvironment{cvtable} {
+	\begin{tabular}{L!{\color{tabcol}\vrule width 0.5pt}D}
+} {
+	\end{tabular}
+}
+
+\newenvironment{cvitemize} {
+	\normalfont
+	\begin{itemize}
+} {
+	\end{itemize}
+}
+
+\begin{document}
+
+	\begin{tikzpicture}[absolute, remember picture, overlay]
+		\node[rectangle, fill=primcol, anchor=north west, minimum width=\paperwidth+1cm, minimum height=3.7cm] at (current page.north west) {};
+	\end{tikzpicture}
+	\begin{textblock}{15}(1, 0.3)
+		\color{white}
+		\begin{center}
+			{\Huge Mom\v cilo Topalovi\' c} \\[0.5em]
+			{\Large \it Computer Science Student} \\[0.8em]
+			\begin{tabular}{c c c}
+				{\faEnvelope} \hspace*{0.1cm}
+					\href{mailto:mtomcilo@gmail.com}{mtomcilo@gmail.com} & \hspace*{1cm}
+				\raisebox{-1.2pt}{\Large\faMobilePhone} \hspace*{0.1cm}
+					+381 66 204154 & \hspace*{1cm}
+				{\large\faLinkedin}
+					\href{https://www.linkedin.com/in/tomcilo}{linkedin.com/in/tomcilo}
+			\end{tabular}
+		\end{center}
+	\end{textblock}
+
+
+	\section{Education}
+
+		\begin{cvtable}
+			2018 - \textit{present} & 
+				\mainitem{Trinity College, University of Cambridge}{Cambridge, United Kingdom} {
+					Bachelor of Arts, Computer Science
+				} \\[10pt]
+			2014 - 2018 & 
+				\mainitem{Matemati\v cka gimnazija}{Belgrade, Serbia} {
+					Mathematical Grammar School
+					\begin{cvitemize}
+						\item GPA: 5.0/5.0
+						\item Final-year project: \textit{Elliptic Curve Cryptography}
+					\end{cvitemize}
+				} \\
+			2016 - 2018 &
+				\mainitem{Petnica Science Institute}{Valjevo, Serbia} {
+					Seminar of Mathematics
+					\begin{cvitemize}
+						\item Project: \textit{Crossing Number of Some Graphs}
+					\end{cvitemize}
+				}
+		\end{cvtable}
+
+	\section{Honours \& Awards}
+
+		\begin{cvtable}
+			June 2018 &
+				\mainitem{Best Final-year project in area of Informatics}{Belgrade, Serbia} {
+					Mathematical Grammar School
+				} \\[10pt]
+			May 2018 &
+				\mainitem{Cambridge Overseas Trust Scholarship}{Cambridge, United Kingdom} {
+					Cambridge Commonwealth, European and International Trust
+				} \\[10pt]
+			May 2018 &
+				\mainitem{Trinity Overseas Bursary}{Cambridge, United Kingdom} {
+					Trinity College, University of Cambridge
+				} \\[10pt]
+			January 2018 &
+				\mainitem{Silver Medal}{Almaty, Kazakhstan} {
+					International Zhautykov Olympiad, Informatics
+				} \\[10pt]
+			August 2017 &
+				\mainitem{Bronze Medal}{Tehran, Iran} {
+					International Olympiad in Informatics
+				} \\[10pt]
+			2015 - 2018 &
+				\mainitem{Serbian High School Olympiad Awards}{Belgrade, Serbia} {
+					Mathematical and Physical Societies of Serbia
+					\begin{cvitemize} \itemsep0em
+						\item Serbian Olympiad in Informatics - Second Prize (May 2018)
+						\item Serbian Olympiad in Informatics - Second Prize (May 2017)
+						\item Serbian Olympiad in Mathematics - Third Prize (April 2018)
+					\end{cvitemize}
+				} \\
+			May 2014 &
+				\mainitem{Silver Medal}{Belgrade, Serbia} {
+					Serbian Chemistry Olympiad
+				}
+		\end{cvtable}
+
+	\section{Skills}
+
+	\begin{cvtable}
+		\starts{5}{5}{Proficient} &
+			C/C$++$, \LaTeX, Algorithms, Data Structures \\
+		\starts{4}{5}{Experienced} &
+			\CSharp, Python, Haskell, Ti\textit{k}Z \\
+		\starts{3}{5}{Skilled} &
+			Rust, Prolog, Machine Learning, Cryptography, 
+	\end{cvtable}
+
+\end{document}
